@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jhaym3s/udua/internal/product"
 )
 
 type Application struct {
@@ -39,6 +40,9 @@ func (app *Application) Mount() http.Handler {
   r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
     w.Write([]byte("healthy"))
   })
+  productService := product.NewService() // pass in your dependencies here, like a database client, cache, etc.
+  productsHandler := product.NewHandler(productService) // pass in your service implementation here
+  r.Get("/products", productsHandler.ListProducts)
 
 	return r
 }
