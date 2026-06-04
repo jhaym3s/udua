@@ -9,7 +9,6 @@ type Service interface {
 }
 
 type srvc struct {
-	// you can add dependencies here, like a database client, cache, etc.
 
 }
 

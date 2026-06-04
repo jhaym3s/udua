@@ -18,6 +18,7 @@ func NewHandler(s Service) *handler {
 }
 
 func (h *handler) ListProducts(w http.ResponseWriter, r *http.Request) {
+	// the service is where the business logic lives, so we call it to get the data we need to return to the client
 	err := h.Service.ListProducts(r.Context())
 	if err != nil {
 		log.Println("Failed to list products:", err)
